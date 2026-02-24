@@ -1,2 +1,12 @@
-const mongoose=require("mongoose");
-module.exports=async()=>{try{await mongoose.connect(process.env.MONGO_URI);console.log("MongoDB Connected");}catch(e){console.error(e);process.exit(1);}}
+// config/db.js
+const sqlite3 = require('sqlite3').verbose();
+
+const db = new sqlite3.Database('./database.sqlite', (err) => {
+  if (err) {
+    console.error('Database connection failed:', err);
+  } else {
+    console.log('Connected to SQLite DB');
+  }
+});
+
+module.exports = db;
